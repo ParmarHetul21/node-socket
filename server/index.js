@@ -2,6 +2,7 @@ import app from "./app.js";
 import "dotenv/config";
 // import { startSockets } from "./src/server.js";
 import { Server } from "socket.io";
+import { startSockets } from "./src/server.js";
 
 const PORT = process.env.PORT;
 
@@ -15,4 +16,7 @@ const io = new Server(server, {
 
 const v1Socket = io.of("/v1").on("connection", (socket) => {
 	console.log("User Connect on V1 Socket", socket.id);
+	startSockets(socket);
 });
+
+export default v1Socket;
